@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const startBtn = document.getElementById('start-btn');
     const status = document.getElementById('status');
     const notes = document.getElementById('notes');
-
     let recognition;
     if ('webkitSpeechRecognition' in window) {
         recognition = new webkitSpeechRecognition();
@@ -12,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
         alert('Your browser does not support speech recognition.');
         return;
     }
-
     recognition.continuous = true;
     recognition.interimResults = true;
     recognition.lang = 'en-US';
@@ -45,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const fullTranscript = finalTranscript + interimTranscript;
         notes.value = fullTranscript;
 
-        // Process the transcript with compromise.js
+
         const doc = nlp(fullTranscript);
         const people = doc.people().out('array');
         const organizations = doc.organizations().out('array');
